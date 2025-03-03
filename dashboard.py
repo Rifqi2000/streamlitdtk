@@ -11,22 +11,29 @@ st.set_page_config(page_title="Dashboard", layout="wide")
 # DB_PASSWORD = ""
 # DB_NAME = "db_demografi"
 
-DB_HOST = "192.168.40.160"
+# Konfigurasi database
+DB_HOST = "192.168.40.160"  # Gunakan IP server MySQL
 DB_USER = "deploy_user"
 DB_PASSWORD = "deploy"
 DB_NAME = "db_demografi"
-
+DB_PORT = 3306  # Tambahkan port MySQL
 
 def get_data(query):
     """Fungsi untuk mengambil data dari database dan menangani nilai kosong."""
     try:
-        conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
+        # Gunakan timeout agar lebih responsif
+        conn = pymysql.connect(
+            host=DB_HOST, user=DB_USER, password=DB_PASSWORD,
+            database=DB_NAME, port=DB_PORT, connect_timeout=10
+        )
         df = pd.read_sql(query, conn)
         conn.close()
         return df if not df.empty else pd.DataFrame()
+    except pymysql.err.OperationalError as e:
+        st.error(f"Koneksi ke MySQL gagal: {e}")
     except Exception as e:
         st.error(f"Error dalam mengambil data: {e}")
-        return pd.DataFrame()
+    return pd.DataFrame()
 
 # Dropdown untuk memilih halaman
 selected_page = st.sidebar.selectbox("Pilih Halaman", ["Demografi", "Tunggakan dan Kepemilikan"])
