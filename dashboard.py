@@ -12,8 +12,8 @@ st.set_page_config(page_title="Dashboard", layout="wide")
 # DB_NAME = "db_demografi"
 
 DB_HOST = "192.168.40.160"
-DB_USER = "rifqi_user"
-DB_PASSWORD = "rifqi_123"
+DB_USER = "admin"
+DB_PASSWORD = ""
 DB_NAME = "db_demografi"
 
 
@@ -580,7 +580,7 @@ elif selected_page == "Tunggakan dan Kepemilikan":
                         color_discrete_sequence=px.colors.sequential.Magma, 
                         hole=0.3)  # Menyesuaikan ukuran agar lebih mirip dengan diagram pendidikan
             
-            fig.update_layout(font=dict(size=18), height=500, width=500)  # Sesuaikan ukuran agar proporsional
+            fig.update_layout(font=dict(size=14), height=500, width=500)  # Sesuaikan ukuran agar proporsional
             fig.update_traces(textinfo='percent+label')  # Tambahkan label persentase
             
             st.plotly_chart(fig, use_container_width=True)
