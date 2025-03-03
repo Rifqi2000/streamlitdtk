@@ -12,8 +12,8 @@ st.set_page_config(page_title="Dashboard", layout="wide")
 # DB_NAME = "db_demografi"
 
 DB_HOST = "192.168.40.160"
-DB_USER = "admin"
-DB_PASSWORD = ""
+DB_USER = "deploy_user"
+DB_PASSWORD = "deploy"
 DB_NAME = "db_demografi"
 
 
