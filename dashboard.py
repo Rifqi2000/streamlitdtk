@@ -24,7 +24,7 @@ def get_data(query):
         # Gunakan timeout agar lebih responsif
         conn = pymysql.connect(
             host=DB_HOST, user=DB_USER, password=DB_PASSWORD,
-            database=DB_NAME, port=DB_PORT, connect_timeout=10
+            database=DB_NAME, port=DB_PORT, connect_timeout=100
         )
         df = pd.read_sql(query, conn)
         conn.close()
